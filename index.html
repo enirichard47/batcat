@@ -230,7 +230,7 @@
     <!-- 1. Marquee Header -->
     <div class="marquee relative z-[60]">
         <div class="marquee-inner bangers text-2xl">
-            🚀 $BATCAT IS REVIVING THE TRENCHES! 🚀 DEXSCREENER PAID IMMEDIATELY! 🚀 MARKETING BOOSTS ACTIVE! 🚀 MOBY BUDGET SECURED! 🚀 0% TAX 🚀 PUMP IT ON SOLANA! 🚀 $BATCAT IS REVIVING THE TRENCHES! 🚀 DEXSCREENER PAID IMMEDIATELY! 🚀
+            🚀 $BATCAT IS REVIVING THE TRENCHES! 🚀 MARKETING BOOSTS ACTIVE! 🚀 MOBY BUDGET SECURED! 🚀 0% TAX 🚀 PUMP IT ON SOLANA! 🚀 $BATCAT IS REVIVING THE TRENCHES! 🚀 MARKETING BOOSTS ACTIVE! 🚀 MOBY BUDGET SECURED! 🚀 0% TAX 🚀 PUMP IT ON SOLANA! 🚀
         </div>
     </div>
 
@@ -255,6 +255,8 @@
                     class="nav-link text-white hover:text-yellow-300 hover:-translate-y-1 transition-all drop-shadow-[2px_2px_0_rgba(0,0,0,1)]">Bat-nomics</a>
                 <a href="#roadmap"
                     class="nav-link text-white hover:text-yellow-300 hover:-translate-y-1 transition-all drop-shadow-[2px_2px_0_rgba(0,0,0,1)]">Bat-Plan</a>
+                <a href="#team"
+                    class="nav-link text-white hover:text-yellow-300 hover:-translate-y-1 transition-all drop-shadow-[2px_2px_0_rgba(0,0,0,1)]">Team</a>
                 <a href="#buy"
                     class="nav-link text-white hover:text-yellow-300 hover:-translate-y-1 transition-all drop-shadow-[2px_2px_0_rgba(0,0,0,1)]">Buy</a>
             </nav>
@@ -282,6 +284,8 @@
                     class="nav-link text-white hover:text-yellow-300 drop-shadow-[2px_2px_0_rgba(0,0,0,1)] w-full text-center py-2">Bat-nomics</a>
                 <a href="#roadmap" @click="mobileMenu = false"
                     class="nav-link text-white hover:text-yellow-300 drop-shadow-[2px_2px_0_rgba(0,0,0,1)] w-full text-center py-2">Bat-Plan</a>
+                <a href="#team" @click="mobileMenu = false"
+                    class="nav-link text-white hover:text-yellow-300 drop-shadow-[2px_2px_0_rgba(0,0,0,1)] w-full text-center py-2">Team</a>
                 <a href="#buy" @click="mobileMenu = false"
                     class="nav-link text-white hover:text-yellow-300 drop-shadow-[2px_2px_0_rgba(0,0,0,1)] w-full text-center py-2">How
                     to Buy</a>
@@ -321,7 +325,7 @@
                         </p>
                     </div>
                     <p class="text-xl md:text-2xl text-slate-200 max-w-xl leading-relaxed drop-shadow-lg font-serif">
-                        We decided to recreate BatCat. Dexscreener will be paid immediately, boosts will be added, and moby will be paid for asap. Let's make BatCat the big runner on Solana.
+                        We decided to recreate BatCat. Boosts will be added, and moby will be paid for asap. Let's make BatCat the big runner on Solana.
                     </p>
                 </div>
                 <div class="flex flex-col sm:flex-row gap-6">
@@ -334,7 +338,7 @@
                     class="absolute inset-0 bg-yellow-300 rounded-full blur-[100px] opacity-40 animate-pulse translate-y-10">
                 </div>
                 <img src="images/hero.jpg" alt="Hero Meme"
-                    class="w-full max-w-lg lg:max-w-xl mx-auto drop-shadow-[0_40px_35px_rgba(0,0,0,0.6)] transform hover:scale-105 hover:-translate-y-4 transition duration-500 relative z-10 border-8 border-black rounded-3xl comic-card object-cover aspect-square">
+                    class="w-full max-w-lg lg:max-w-xl mx-auto drop-shadow-[0_40px_35px_rgba(0,0,0,0.6)] transform hover:scale-105 hover:-translate-y-4 transition duration-500 relative z-10 border-8 border-black rounded-3xl comic-card">
             </div>
         </div>
     </section>
@@ -348,7 +352,7 @@
                         class="absolute inset-0 bg-[var(--pepe-yellow)] translate-x-4 translate-y-4 border-4 border-black rounded-3xl opacity-100 shadow-[4px_4px_0_rgba(0,0,0,1)]">
                     </div>
                     <img src="images/hero2.jpg"
-                        class="relative w-full aspect-[4/3] object-cover border-4 border-black rounded-3xl shadow-[8px_8px_0_rgba(0,0,0,1)] hover:scale-[1.02] transition-transform z-10 bg-white"
+                        class="relative w-full border-4 border-black rounded-3xl shadow-[8px_8px_0_rgba(0,0,0,1)] hover:scale-[1.02] transition-transform z-10 bg-white"
                         alt="BatCat History">
                 </div>
                 <div class="lg:w-1/2 w-full flex flex-col justify-center" data-aos="fade-left">
@@ -367,7 +371,7 @@
                         <div class="absolute w-full h-full left-0 top-0 transition-transform duration-500 ease-in-out px-4 flex flex-col"
                             :style="`transform: translateY(-${slide * 100}%)`">
                             <div class="h-28 flex items-center shrink-0 font-bold text-slate-800 text-2xl md:text-3xl">
-                                <span class="mr-4 text-4xl">🟢</span> Dexscreener Paid Instantly.
+                                <span class="mr-4 text-4xl">🟢</span> 0% Transaction Tax.
                             </div>
                             <div class="h-28 flex items-center shrink-0 font-bold text-slate-800 text-2xl md:text-3xl">
                                 <span class="mr-4 text-4xl">🔥</span> Marketing Boosts Locked.
@@ -547,8 +551,8 @@
 
                             <!-- Image Frame -->
                             <div
-                                class="relative w-full h-[88%] md:h-[90%] border-4 border-black overflow-hidden bg-gray-100 transition-transform duration-300 shadow-inner">
-                                <img :src="meme.img" class="w-full h-full object-cover">
+                                class="relative w-full h-[88%] md:h-[90%] border-4 border-black overflow-hidden bg-zinc-900 transition-transform duration-300 shadow-inner">
+                                <img :src="meme.img" class="w-full h-full object-contain">
                             </div>
 
                             <!-- Label Overlay -->
@@ -598,7 +602,7 @@
                         1</div>
                     <div class="comic-card p-6 md:p-8 lg:p-6 md:p-10 bg-white">
                         <h3 class="text-4xl mb-4 text-yellow-600">PHASE 1: GENESIS</h3>
-                        <p class="text-xl font-bold text-gray-700 leading-relaxed">Stealth launch while the world sleeps. Dexscreener paid immediately, social takeover, and initial community assembly.</p>
+                        <p class="text-xl font-bold text-gray-700 leading-relaxed">Stealth launch while the world sleeps. Social takeover, initial community assembly, and marketing kick-off.</p>
                     </div>
                 </div>
 
@@ -623,6 +627,71 @@
                         <h3 class="text-4xl mb-4 text-purple-600">PHASE 3: ASCENSION</h3>
                         <p class="text-xl font-bold text-gray-700 leading-relaxed">Reclaiming the 20M marketcap legacy. Major CEX integration, global campaigns, and setting Solana's biggest runner free.</p>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7.5 The Team Section -->
+    <section id="team" class="py-16 md:py-32 bg-slate-900 border-b-8 border-black text-white relative overflow-hidden">
+        <!-- Background shapes/glows -->
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(240,208,64,0.05)_1px,_transparent_1px)]"
+            style="background-size: 24px 24px;"></div>
+        <div class="absolute top-1/4 left-10 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-1/4 right-10 w-72 h-72 bg-yellow-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="container mx-auto px-6 max-w-5xl relative z-10">
+            <h2 class="text-5xl md:text-7xl text-center mb-6 drop-shadow-[5px_5px_0_rgba(0,0,0,1)] text-yellow-300"
+                data-aos="fade-down">THE TEAM BEHIND THE MASK</h2>
+            <p class="text-center text-xl md:text-2xl font-mono text-purple-400 mb-16 tracking-widest break-all select-all hover:text-purple-300 transition-colors"
+                data-aos="fade-up">
+                HCkhfdDNF2dqMxxtL51AzgWU26MBNkUkEzGAHtqkpump <span class="text-yellow-300">(aka BatCat 🤭)</span>
+            </p>
+
+            <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-stretch">
+                <!-- Left Card: Who We Are -->
+                <div class="comic-card p-8 md:p-10 bg-white text-black flex flex-col justify-between" data-aos="fade-right">
+                    <div>
+                        <div class="flex items-center gap-4 mb-6">
+                            <span class="text-5xl">⚡</span>
+                            <h3 class="text-3xl md:text-4xl text-yellow-600 font-bold bangers tracking-wide">NOT YOUR AVERAGE DEGENS</h3>
+                        </div>
+                        <p class="text-xl font-bold text-gray-700 leading-relaxed mb-6 font-sans">
+                            We aren't just another group of random coders copy-pasting code. Our squad consists of battle-hardened builders who have built, launched, and scaled multiple high-profile projects to multi-million valuations—both in the web3 space and the real world.
+                        </p>
+                        <p class="text-xl font-bold text-gray-700 leading-relaxed font-sans">
+                            By combining deep crypto-native knowledge with mainstream business experience, we've united top-tier talent in engineering, marketing campaigns, secure operations, and massive community development. This is a real, high-performance operation.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Right Card: Global Operations -->
+                <div class="comic-card p-8 md:p-10 bg-yellow-100 text-black flex flex-col justify-between" data-aos="fade-left">
+                    <div>
+                        <div class="flex items-center gap-4 mb-6">
+                            <span class="text-5xl">🌍</span>
+                            <h3 class="text-3xl md:text-4xl text-blue-600 font-bold bangers tracking-wide">24/7 GLOBAL FORCE</h3>
+                        </div>
+                        <p class="text-xl font-bold text-gray-700 leading-relaxed mb-6 font-sans">
+                            We are a fully decentralized, global team working across all time zones 24/7 to maintain relentless momentum. From high-level strategy to rapid execution, we operate as one cohesive unit.
+                        </p>
+                        <p class="text-xl font-bold text-gray-700 leading-relaxed font-sans">
+                            When experienced developers and strategic marketers align with a single vision, legends are born.
+                        </p>
+                    </div>
+                    <div class="mt-8 pt-6 border-t-2 border-black border-dashed">
+                        <p class="marker text-xl md:text-2xl text-red-600">
+                            "If you’ve had enough of low-effort rugs, empty promises, and quick scams—welcome to a project built to last."
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CA Display Footer inside Section -->
+            <div class="mt-16 text-center" data-aos="fade-up">
+                <div class="inline-block bg-slate-950 border-4 border-yellow-400/60 rounded-2xl p-4 px-8 shadow-[6px_6px_0_rgba(0,0,0,1)]">
+                    <p class="text-lg font-bold text-yellow-300 uppercase tracking-widest mb-2 font-mono">Official Contract Address</p>
+                    <code class="text-lg md:text-2xl text-purple-400 select-all font-mono break-all">HCkhfdDNF2dqMxxtL51AzgWU26MBNkUkEzGAHtqkpump</code>
                 </div>
             </div>
         </div>
@@ -827,7 +896,7 @@
                     <div x-show="faqOpen === 1" x-collapse>
                         <div
                             class="p-6 md:p-8 text-2xl font-bold bg-white border-t-[5px] border-black text-gray-700 leading-relaxed shadow-inner">
-                            <span class="typing marker text-xl text-black">No, we are here to revive the trenches. Dexscreener is paid immediately, liquidity is burnt, and the community is in charge.</span>
+                            <span class="typing marker text-xl text-black">No, we are here to revive the trenches. Liquidity is burnt, the contract is renounced, and the community is in charge.</span>
                         </div>
                     </div>
                 </div>
@@ -893,7 +962,7 @@
             </h2>
             <p class="text-2xl lg:text-3xl font-bold font-sans text-gray-800 mb-14 drop-shadow-sm opacity-90 marker italic"
                 data-aos="fade-up" data-aos-delay="150">
-                "The team is committed, Dexscreener is paid, boosts are active, and the trenches are revived. Reclaim the legacy."
+                "The team is committed, boosts are active, and the trenches are revived. Reclaim the legacy."
             </p>
 
             <div data-aos="zoom-in" data-aos-delay="300" class="relative group mt-6">
