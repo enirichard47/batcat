@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$BATCAT | Reviving the Solana Trenches</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bangers&family=Permanent+Marker&family=Comic+Neue:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <style>
+        :root {
+            --pepe-green: #090e17; /* Deep midnight slate */
+            --pepe-dark: #05070c;  /* Extra dark charcoal */
+            --pepe-yellow: #f0d040; /* Golden yellow */
+            --comic-black: #111318;
+        }
+
+        html, body {
+            overflow-x: hidden;
+            max-width: 100vw;
+        }
+
+        body {
+            background-color: var(--pepe-green);
+            color: white;
+            font-family: 'Comic Neue', cursive;
+            overflow-x: hidden;
+            width: 100vw;
+            max-width: 100vw;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><text y="20" font-size="20">🦇</text></svg>'), auto;
+        }
+
+        h1,
+        h2,
+        h3,
+        .bangers {
+            font-family: 'Bangers', cursive;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .marker {
+            font-family: 'Permanent Marker', cursive;
+        }
+
+        .comic-card {
+            background: white;
+            color: var(--comic-black);
+            border: 4px solid var(--comic-black);
+            box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.9);
+            border-radius: 16px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .comic-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 12px 16px 0px rgba(0, 0, 0, 0.9);
+        }
+
+        .btn-main {
+            background: var(--pepe-yellow);
+            color: black;
+            border: 4px solid black;
+            box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.9);
+            border-radius: 12px;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: 'Bangers', cursive;
+            letter-spacing: 2px;
+        }
+
+        .btn-main:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 9px 9px 0px rgba(0, 0, 0, 0.9);
+            background: #fff;
+        }
+
+        .btn-main:active {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.9);
+        }
+
+        .marquee {
+            background: black;
+            color: var(--pepe-yellow);
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 12px 0;
+            border-bottom: 4px solid #333;
+        }
+
+        .marquee-inner {
+            display: inline-block;
+            animation: marquee 30s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 14px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--pepe-dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--pepe-yellow);
+            border: 3px solid var(--pepe-dark);
+            border-radius: 10px;
+        }
+
+        .typing::after {
+            content: '|';
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        .text-glow {
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(240, 208, 64, 0.3);
+        }
+
+        /* Elegant Nav Active State */
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--pepe-yellow);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link.active::after,
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link.active {
+            color: var(--pepe-yellow) !important;
+            transform: translateY(-2px);
+        }
+
+        /* Preloader Animations */
+        @keyframes loading-bar {
+            0% {
+                width: 0%;
+            }
+
+            40% {
+                width: 60%;
+            }
+
+            100% {
+                width: 100%;
+            }
+        }
+
+        .animate-spin-slow {
+            animation: spin 3s linear infinite;
+        }
+
+        body.loading-active {
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body :class="loading ? 'loading-active' : ''" x-data="{ 
+        loading: true,
+        lightbox: false, 
+        imgSource: '', 
+        faqOpen: null, 
+        mobileMenu: false,
+        activeMemeIndex: 0,
+        memeStack: [
+            { img: 'images/meme1.jpg', title: 'BAT-SIGNAL', angle: '-rotate-3', color: 'bg-yellow-300' },
+            { img: 'images/meme2.jpg', title: 'TRENCH LIFE', angle: 'rotate-2', color: 'bg-blue-300' },
+            { img: 'images/meme3.jpg', title: 'TO THE MOON', angle: '-rotate-1', color: 'bg-stone-400' }
+        ]
+    }" x-init="setTimeout(() => loading = false, 1800)">
+
+    <!-- 0. Epic Preloader -->
+    <div x-show="loading" x-transition.opacity.duration.800ms
+        class="fixed top-0 left-0 w-full h-[100dvh] z-[100] bg-slate-950 flex flex-col items-center justify-center border-8 md:border-[16px] border-black box-border">
+        <div class="relative w-24 h-24 md:w-32 md:h-32 mb-8 animate-bounce">
+            <div class="absolute inset-0 bg-yellow-300 rounded-full blur-[30px] opacity-60 animate-pulse"></div>
+            <img src="images/hero.jpg" alt="BatCat Logo"
+                class="relative w-full h-full object-cover rounded-full border-[6px] border-black shadow-[10px_10px_0_rgba(0,0,0,1)] animate-spin-slow">
+        </div>
+        <div class="flex items-center justify-center w-full px-4 text-center">
+            <h2 class="text-3xl sm:text-4xl md:text-5xl bangers text-yellow-300 drop-shadow-[4px_4px_0_rgba(0,0,0,1)] tracking-widest flex items-center justify-center m-0">
+                <span>REVIVING THE TRENCHES</span><span class="typing inline-block w-8 md:w-12 text-left">...</span>
+            </h2>
+        </div>
+        <div
+            class="w-48 md:w-64 h-6 bg-white rounded-full mt-8 border-4 border-black overflow-hidden relative shadow-[5px_5px_0_rgba(0,0,0,1)]">
+            <div class="absolute top-0 left-0 h-full bg-yellow-400 animate-[loading-bar_1.8s_ease-in-out_forwards]">
+                <div
+                    class="w-full h-full bg-[linear-gradient(45deg,rgba(255,255,255,0.2)25%,transparent_25%,transparent_50%,rgba(255,255,255,0.2)50%,rgba(255,255,255,0.2)75%,transparent_75%,transparent)] bg-[length:20px_20px]">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 1. Marquee Header -->
+    <div class="marquee relative z-[60]">
+        <div class="marquee-inner bangers text-2xl">
+            🚀 $BATCAT IS REVIVING THE TRENCHES! 🚀 DEXSCREENER PAID IMMEDIATELY! 🚀 MARKETING BOOSTS ACTIVE! 🚀 MOBY BUDGET SECURED! 🚀 0% TAX 🚀 PUMP IT ON SOLANA! 🚀 $BATCAT IS REVIVING THE TRENCHES! 🚀 DEXSCREENER PAID IMMEDIATELY! 🚀
+        </div>
+    </div>
+
+    <!-- 1.5 Header / Nav -->
+    <header
+        class="sticky top-0 z-50 bg-slate-950/90 backdrop-blur-lg border-b-4 border-black shadow-[0_10px_20px_rgba(0,0,0,0.3)] transition-all overflow-visible">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center h-[80px]">
+            <a href="#"
+                class="flex items-center gap-3 drop-shadow-[2px_2px_0_rgba(0,0,0,1)] hover:scale-105 transition-transform group">
+                <img src="images/hero.jpg" alt="BatCat Logo"
+                    class="w-12 h-12 object-cover rounded-full border-2 border-white shadow-[2px_2px_0_rgba(0,0,0,1)] group-hover:rotate-12 transition-transform">
+                <span class="text-4xl bangers text-yellow-300 uppercase"><span class="text-white">BAT</span>CAT</span>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden lg:flex gap-6 md:p-10 marker text-2xl h-full items-center">
+                <a href="#about"
+                    class="nav-link text-white hover:text-yellow-300 hover:-translate-y-1 transition-all drop-shadow-[2px_2px_0_rgba(0,0,0,1)]">Lore</a>
+                <a href="#stats"
+                    class="nav-link text-white hover:text-yellow-300 hover:-translate-y-1 transition-all drop-shadow-[2px_2px_0_rgba(0,0,0,1)]">Radar</a>
+                <a href="#tokenomics"
+                    class="nav-link text-white hover:text-yellow-300 hover:-translate-y-1 transition-all drop-shadow-[2px_2px_0_rgba(0,0,0,1)]">Bat-nomics</a>
+                <a href="#roadmap"
+                    class="nav-link text-white hover:text-yellow-300 hover:-translate-y-1 transition-all drop-shadow-[2px_2px_0_rgba(0,0,0,1)]">Bat-Plan</a>
+                <a href="#buy"
+                    class="nav-link text-white hover:text-yellow-300 hover:-translate-y-1 transition-all drop-shadow-[2px_2px_0_rgba(0,0,0,1)]">Buy</a>
+            </nav>
+
+            <!-- Desktop Button -->
+            <div class="hidden lg:flex gap-4">
+                <a href="#buy" class="btn-main px-8 py-3 text-3xl">Buy Now</a>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button
+                class="lg:hidden text-white text-4xl hover:text-yellow-300 transition-colors drop-shadow-[2px_2px_0_rgba(0,0,0,1)]"
+                @click="mobileMenu = !mobileMenu">☰</button>
+        </div>
+
+        <!-- Mobile Dropdown -->
+        <div x-show="mobileMenu" x-collapse.duration.300ms
+            class="lg:hidden bg-slate-950 border-t-2 border-black border-b-4 absolute w-full left-0 origin-top shadow-2xl">
+            <div class="flex flex-col items-center py-6 gap-6 marker text-3xl">
+                <a href="#about" @click="mobileMenu = false"
+                    class="nav-link text-white hover:text-yellow-300 drop-shadow-[2px_2px_0_rgba(0,0,0,1)] w-full text-center py-2">Lore</a>
+                <a href="#stats" @click="mobileMenu = false"
+                    class="nav-link text-white hover:text-yellow-300 drop-shadow-[2px_2px_0_rgba(0,0,0,1)] w-full text-center py-2">Radar</a>
+                <a href="#tokenomics" @click="mobileMenu = false"
+                    class="nav-link text-white hover:text-yellow-300 drop-shadow-[2px_2px_0_rgba(0,0,0,1)] w-full text-center py-2">Bat-nomics</a>
+                <a href="#roadmap" @click="mobileMenu = false"
+                    class="nav-link text-white hover:text-yellow-300 drop-shadow-[2px_2px_0_rgba(0,0,0,1)] w-full text-center py-2">Bat-Plan</a>
+                <a href="#buy" @click="mobileMenu = false"
+                    class="nav-link text-white hover:text-yellow-300 drop-shadow-[2px_2px_0_rgba(0,0,0,1)] w-full text-center py-2">How
+                    to Buy</a>
+                <a href="#buy" @click="mobileMenu = false" class="btn-main px-12 py-4 text-3xl mt-4 z-10 relative">Buy
+                    Now</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 2. Hero Section -->
+    <section id="home"
+        class="relative min-h-[calc(100vh-80px)] flex items-center justify-center pt-10 pb-20 overflow-hidden bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-slate-900 via-slate-950 to-black">
+        <!-- Floating shapes background -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
+            <div
+                class="absolute top-6 md:p-10 left-10 w-24 h-24 md:w-32 md:h-32 bg-yellow-300 rounded-full mix-blend-overlay blur-xl animate-pulse">
+            </div>
+            <div class="absolute bottom-20 right-20 w-48 md:w-64 h-64 bg-yellow-500/20 rounded-full mix-blend-overlay blur-3xl animate-pulse"
+                style="animation-delay: 2s;"></div>
+        </div>
+
+        <div class="container mx-auto px-6 grid lg:grid-cols-2 items-center gap-8 md:gap-16 relative z-10 w-full">
+            <div data-aos="fade-right" class="text-center lg:text-left flex flex-col items-center lg:items-start">
+                <p class="text-yellow-300 bangers text-3xl tracking-widest drop-shadow-md mb-2">REVIVING THE TRENCHES</p>
+                <h1
+                    class="text-[3.5rem] sm:text-[4rem] md:text-[6rem] lg:text-[8rem] mb-2 text-white drop-shadow-[5px_5px_0_rgba(0,0,0,1)] leading-none text-glow uppercase">
+                    BAT<span class="text-yellow-300">CAT</span>
+                </h1>
+                <p
+                    class="marker text-xl md:text-2xl lg:text-3xl mb-10 text-black bg-white/90 backdrop-blur border-4 border-black rounded-xl inline-block px-6 py-3 shadow-[6px_6px_0_rgba(0,0,0,1)] transform -rotate-2">
+                    In 2024, BatCat ran up to a massive 20M marketcap. In 2026, we recreate the legend on Solana.
+                </p>
+                <div class="mb-8 font-['Playfair_Display'] italic tracking-wide">
+                    <div class="inline-block border-2 border-yellow-400/60 bg-gradient-to-r from-slate-950/60 to-black/60 backdrop-blur-md rounded-2xl px-10 py-5 mb-8 shadow-[0_10px_40px_rgba(240,208,64,0.2)]">
+                        <p class="text-4xl md:text-5xl lg:text-6xl text-yellow-300 drop-shadow-[0_2px_4px_rgba(0,0,0,1)] font-bold leading-relaxed">
+                            "The trenches are back."
+                        </p>
+                    </div>
+                    <p class="text-xl md:text-2xl text-slate-200 max-w-xl leading-relaxed drop-shadow-lg font-serif">
+                        We decided to recreate BatCat. Dexscreener will be paid immediately, boosts will be added, and moby will be paid for asap. Let's make BatCat the big runner on Solana.
+                    </p>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-6">
+                    <a href="#buy" class="btn-main px-8 py-4 md:px-12 md:py-5 text-2xl md:text-4xl whitespace-nowrap">Buy Now</a>
+                    <a href="#chart" class="btn-main px-8 py-4 md:px-12 md:py-5 text-2xl md:text-4xl bg-black text-white hover:text-black">Chart</a>
+                </div>
+            </div>
+            <div data-aos="zoom-in" data-aos-duration="1200" class="relative flex justify-center lg:justify-end">
+                <div
+                    class="absolute inset-0 bg-yellow-300 rounded-full blur-[100px] opacity-40 animate-pulse translate-y-10">
+                </div>
+                <img src="images/hero.jpg" alt="Hero Meme"
+                    class="w-full max-w-lg lg:max-w-xl mx-auto drop-shadow-[0_40px_35px_rgba(0,0,0,0.6)] transform hover:scale-105 hover:-translate-y-4 transition duration-500 relative z-10 border-8 border-black rounded-3xl comic-card object-cover aspect-square">
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. About / Lore Section -->
+    <section id="about" class="py-16 md:py-32 bg-[#fafafa] text-black border-y-8 border-black relative">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row gap-8 md:gap-16 items-center max-w-7xl mx-auto">
+                <div class="lg:w-1/2 w-full relative" data-aos="fade-right">
+                    <div
+                        class="absolute inset-0 bg-[var(--pepe-yellow)] translate-x-4 translate-y-4 border-4 border-black rounded-3xl opacity-100 shadow-[4px_4px_0_rgba(0,0,0,1)]">
+                    </div>
+                    <img src="images/hero2.jpg"
+                        class="relative w-full aspect-[4/3] object-cover border-4 border-black rounded-3xl shadow-[8px_8px_0_rgba(0,0,0,1)] hover:scale-[1.02] transition-transform z-10 bg-white"
+                        alt="BatCat History">
+                </div>
+                <div class="lg:w-1/2 w-full flex flex-col justify-center" data-aos="fade-left">
+                    <h2 class="text-5xl md:text-7xl mb-8 drop-shadow-[3px_3px_0_rgba(0,0,0,0.2)]">THE LORE OF <span
+                            class="text-yellow-500">BATCAT</span></h2>
+                    <p class="text-2xl mb-8 font-bold leading-relaxed text-gray-800">
+                        The Solana trenches used to be a place of raw energy and massive runs. But recently, the trenches got tired. They got filled with boring corporate projects, cabals, and instant rugs. The degens need a savior.
+                    </p>
+                    <div class="comic-card p-6 md:p-8 bg-yellow-100 mb-8 border-4 border-black border-dashed">
+                        <p class="marker text-2xl leading-relaxed">"In 2024, a legendary BatCat coin ran up to 20M in marketcap. Today, the team is back to recreate BatCat and revive the trenches for real."</p>
+                    </div>
+
+                    <!-- Mini Highlights Carousel -->
+                    <div x-data="{ slide: 0 }"
+                        class="relative overflow-hidden h-28 bg-white border-4 border-black rounded-2xl p-4 shadow-[6px_6px_0_rgba(0,0,0,1)]">
+                        <div class="absolute w-full h-full left-0 top-0 transition-transform duration-500 ease-in-out px-4 flex flex-col"
+                            :style="`transform: translateY(-${slide * 100}%)`">
+                            <div class="h-28 flex items-center shrink-0 font-bold text-slate-800 text-2xl md:text-3xl">
+                                <span class="mr-4 text-4xl">🟢</span> Dexscreener Paid Instantly.
+                            </div>
+                            <div class="h-28 flex items-center shrink-0 font-bold text-slate-800 text-2xl md:text-3xl">
+                                <span class="mr-4 text-4xl">🔥</span> Marketing Boosts Locked.
+                            </div>
+                            <div class="h-28 flex items-center shrink-0 font-bold text-slate-800 text-2xl md:text-3xl">
+                                <span class="mr-4 text-4xl">👑</span> Reclaiming the 20M Legacy.
+                            </div>
+                        </div>
+                        <div class="hidden">
+                            <template x-init="setInterval(() => slide = (slide + 1) % 3, 3000)"></template>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Live Chart + Stats -->
+    <section id="stats" class="py-16 md:py-32 bg-slate-950 relative border-b-8 border-black">
+        <div
+            class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAuMDUiLz4KPC9zdmc+')] opacity-20 hover:opacity-10 transition-opacity">
+        </div>
+        <div class="container mx-auto px-6 max-w-7xl relative z-10">
+            <h2 class="text-7xl text-center mb-20 text-yellow-300 drop-shadow-[4px_4px_0_rgba(0,0,0,1)] text-glow">BAT-RADAR</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-6 md:p-10 mb-20">
+                <div class="comic-card p-6 md:p-8 text-center bg-white flex flex-col justify-center min-h-[160px]"
+                    data-aos="flip-left" data-aos-duration="800">
+                    <p class="text-lg font-black uppercase text-gray-500 tracking-wider mb-2">Price USD</p>
+                    <h3 id="stat-price" class="text-3xl md:text-4xl lg:text-5xl text-yellow-600">...</h3>
+                </div>
+                <div class="comic-card p-6 md:p-8 text-center bg-white flex flex-col justify-center min-h-[160px]"
+                    data-aos="flip-left" data-aos-duration="800" data-aos-delay="100">
+                    <p class="text-lg font-black uppercase text-gray-500 tracking-wider mb-2">Market Cap</p>
+                    <h3 id="stat-mcap" class="text-3xl md:text-4xl lg:text-5xl text-blue-600">...</h3>
+                </div>
+                <div class="comic-card p-6 md:p-8 text-center bg-white flex flex-col justify-center min-h-[160px]"
+                    data-aos="flip-left" data-aos-duration="800" data-aos-delay="200">
+                    <p class="text-lg font-black uppercase text-gray-500 tracking-wider mb-2">Holders</p>
+                    <h3 id="stat-holders" class="text-3xl md:text-4xl lg:text-5xl text-purple-600">N/A</h3>
+                </div>
+                <div class="comic-card p-6 md:p-8 text-center bg-white flex flex-col justify-center min-h-[160px]"
+                    data-aos="flip-left" data-aos-duration="800" data-aos-delay="300">
+                    <p class="text-lg font-black uppercase text-gray-500 tracking-wider mb-2">Liquidity</p>
+                    <h3 id="stat-liquidity" class="text-3xl md:text-4xl lg:text-5xl text-red-600">PUMPFUN 🔥</h3>
+                </div>
+            </div>
+
+            <!-- Dexscreener Embed -->
+            <div id="chart"
+                class="comic-card p-2 bg-black border-8 rounded-3xl overflow-hidden shadow-[12px_12px_0_rgba(0,0,0,1)] h-[500px] lg:h-[700px] w-full relative"
+                data-aos="fade-up">
+                <iframe class="absolute inset-0 w-full h-full rounded-2xl"
+                    src="https://dexscreener.com/solana/HCkhfdDNF2dqMxxtL51AzgWU26MBNkUkEzGAHtqkpump?embed=1&theme=dark"
+                    frameborder="0">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Token Mechanics -->
+    <section id="tokenomics" class="py-16 md:py-32 bg-yellow-400 text-black border-b-8 border-black overflow-hidden">
+        <div class="container mx-auto px-6 text-center max-w-7xl">
+            <h2 class="text-5xl md:text-7xl lg:text-[6rem] mb-24 drop-shadow-[4px_4px_0_rgba(255,255,255,1)]" data-aos="zoom-in">
+                <span class="underline decoration-wavy decoration-yellow-600">BAT-NOMICS</span>
+            </h2>
+            <div class="flex flex-wrap justify-center gap-12 lg:gap-20">
+                <!-- Card 1 -->
+                <div class="relative group w-56 h-40 md:h-56 md:w-72 md:h-72" data-aos="fade-up" data-aos-duration="1000">
+                    <div
+                        class="absolute inset-0 bg-blue-600 rounded-full blur-[40px] opacity-0 group-hover:opacity-40 transition-opacity duration-300">
+                    </div>
+                    <div
+                        class="w-56 h-40 md:h-56 md:w-72 md:h-72 rounded-full border-[6px] md:border-[10px] border-black bg-white flex flex-col items-center justify-center p-6 transform group-hover:-translate-y-4 group-hover:rotate-[15deg] group-hover:scale-110 shadow-[15px_15px_0_rgba(0,0,0,1)] transition-all duration-500 ease-out z-10 relative">
+                        <span
+                            class="text-6xl mb-4 drop-shadow-md transform group-hover:scale-125 transition-transform duration-300">💎</span>
+                        <h4 class="text-4xl font-bold bangers tracking-widest text-blue-600">1 BILLION</h4>
+                        <p class="text-xl font-bold mt-2 uppercase text-gray-500">Total Supply</p>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="relative group w-56 h-40 md:h-56 md:w-72 md:h-72" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                    <div
+                        class="absolute inset-0 bg-yellow-500 rounded-full blur-[40px] opacity-0 group-hover:opacity-40 transition-opacity duration-300">
+                    </div>
+                    <div
+                        class="w-56 h-40 md:h-56 md:w-72 md:h-72 rounded-full border-[6px] md:border-[10px] border-black bg-yellow-500 flex flex-col items-center justify-center p-6 transform group-hover:-translate-y-4 group-hover:-rotate-[15deg] group-hover:scale-110 shadow-[15px_15px_0_rgba(0,0,0,1)] transition-all duration-500 ease-out z-10 relative">
+                        <span
+                            class="text-6xl mb-4 drop-shadow-md transform group-hover:scale-125 transition-transform duration-300">🔥</span>
+                        <h4
+                            class="text-4xl font-bold bangers tracking-widest text-white drop-shadow-[2px_2px_0_rgba(0,0,0,1)]">
+                            100% BURNT</h4>
+                        <p
+                            class="text-xl font-bold mt-2 uppercase text-slate-900 border-t-2 border-slate-900 pt-1 mt-1">
+                            Liquidity Pool</p>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="relative group w-56 h-40 md:h-56 md:w-72 md:h-72" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+                    <div
+                        class="absolute inset-0 bg-red-600 rounded-full blur-[40px] opacity-0 group-hover:opacity-40 transition-opacity duration-300">
+                    </div>
+                    <div
+                        class="w-56 h-40 md:h-56 md:w-72 md:h-72 rounded-full border-[6px] md:border-[10px] border-black bg-white flex flex-col items-center justify-center p-6 transform group-hover:-translate-y-4 group-hover:rotate-[15deg] group-hover:scale-110 shadow-[15px_15px_0_rgba(0,0,0,1)] transition-all duration-500 ease-out z-10 relative">
+                        <span
+                            class="text-6xl mb-4 drop-shadow-md transform group-hover:scale-125 transition-transform duration-300">🚫</span>
+                        <h4 class="text-4xl font-bold bangers tracking-widest text-red-600">0% TAX</h4>
+                        <p class="text-xl font-bold mt-2 uppercase text-gray-500">Buy & Sell</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Meme Stack Gallery (Investigation Board) -->
+    <section class="py-16 md:py-32 bg-slate-900 border-y-8 border-black overflow-hidden relative">
+        <div class="absolute inset-0 bg-black opacity-10"
+            style="background-image: radial-gradient(circle, #fff 3px, transparent 3px); background-size: 40px 40px;">
+        </div>
+
+        <div class="container mx-auto px-6 max-w-5xl relative z-10">
+            <h2 class="text-5xl md:text-7xl lg:text-[6rem] text-center mb-6 drop-shadow-[5px_5px_0_rgba(0,0,0,1)] text-yellow-300"
+                data-aos="fade-down">THE MEME STACK
+            </h2>
+            <p class="text-center text-white text-2xl font-bold mb-16 marker max-w-2xl mx-auto drop-shadow-md"
+                data-aos="fade-up">Every legendary meme pinned for you. Browse the archives.</p>
+
+            <!-- Stack Container Wrapper -->
+            <div class="relative max-w-5xl mx-auto">
+
+                <!-- Decorative Elements -->
+                <!-- Sticky Note 1 -->
+                <div
+                    class="absolute -top-12 -left-12 lg:-left-24 z-20 w-40 h-40 bg-yellow-200 shadow-md transform -rotate-12 cursor-pointer hover:rotate-0 transition-transform flex items-center justify-center text-center p-4 comic-card">
+                    <p class="marker text-xl text-black">"DEV IS ASLEEP PUMP IT"</p>
+                </div>
+                <!-- Sticky Note 2 -->
+                <div
+                    class="absolute -bottom-16 -right-10 lg:-right-20 z-0 w-48 h-48 bg-[#ff99c8] shadow-md transform rotate-12 cursor-pointer hover:scale-110 transition-transform flex flex-col items-center justify-center text-center p-4 comic-card">
+                    <div
+                        class="w-12 h-4 bg-[#e0e0e0]/70 absolute top-[-10px] transform rotate-3 z-30 opacity-80 backdrop-blur-sm -translate-y-1">
+                    </div>
+                    <p class="marker text-2xl text-black border-red-500 border-4 rounded-full px-4 rotate-[-10deg]">
+                        10,000X</p>
+                </div>
+                <!-- Scrap Paper 1 -->
+                <div
+                    class="absolute top-1/2 -right-16 lg:-right-32 z-20 w-32 h-20 bg-gray-50 shadow-sm border border-gray-200 transform rotate-[15deg] rotate-y-[-10deg] flex items-center justify-center p-2 opacity-90 hidden md:flex">
+                    <div
+                        class="w-8 h-4 bg-yellow-500/20 absolute left-[-15px] transform -rotate-12 z-30 mix-blend-multiply rounded opacity-40">
+                    </div>
+                    <p class="marker text-sm text-blue-800 line-through">SELL AT 2X</p>
+                </div>
+
+                <!-- Stack Container -->
+                <div class="relative h-[400px] md:h-[550px] w-full max-w-4xl mx-auto mb-16 perspective-[1000px] mt-10">
+                    <template x-for="(meme, index) in memeStack" :key="index">
+                        <div class="absolute inset-0 comic-card bg-white p-4 pb-14 lg:pb-16 shadow-[8px_8px_0_rgba(0,0,0,1)] transition-all duration-700 ease-in-out cursor-pointer group"
+                            :class="[
+                            index < activeMemeIndex ? '-translate-x-[120%] opacity-0 rotate-[-20deg] scale-90 pointer-events-none' : meme.angle,
+                            activeMemeIndex === index ? 'hover:scale-[1.02] shadow-[15px_15px_0_rgba(0,0,0,1)]' : 'scale-[0.98]'
+                        ]" :style="`z-index: ${50 - index};`" @click="imgSource = meme.img; lightbox = true"
+                            x-show="index >= activeMemeIndex - 1">
+
+                            <!-- Pinned Thumbtack Base -->
+                            <div
+                                class="absolute -top-4 left-1/2 transform -translate-x-1/2 z-50 pointer-events-none group-hover:-translate-y-1 transition-transform">
+                                <div
+                                    class="w-8 h-8 rounded-full bg-red-600 border-4 border-black shadow-[2px_2px_0_rgba(0,0,0,1)] inset-shadow-inner flex items-center justify-center">
+                                    <div class="w-2 h-2 rounded-full bg-red-800"></div>
+                                </div>
+                                <!-- Pin shadow -->
+                                <div
+                                    class="absolute w-1 h-3 bg-black opacity-50 top-full left-1/2 transform -translate-x-1/2 rounded-full">
+                                </div>
+                            </div>
+
+                            <!-- Image Frame -->
+                            <div
+                                class="relative w-full h-[88%] md:h-[90%] border-4 border-black overflow-hidden bg-gray-100 transition-transform duration-300 shadow-inner">
+                                <img :src="meme.img" class="w-full h-full object-cover">
+                            </div>
+
+                            <!-- Label Overlay -->
+                            <div
+                                class="absolute bottom-3 left-1/2 transform -translate-x-1/2 w-4/5 md:w-1/2 group-hover:scale-110 transition-transform duration-300">
+                                <p class="text-center marker text-xl py-1 md:py-2 border-border-black font-bold uppercase drop-shadow-sm border-2 border-black"
+                                    :class="meme.color" x-text="meme.title"></p>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+
+                <!-- Interactive Gallery Controls -->
+                <div class="flex justify-center items-center gap-6 md:p-8 relative z-50">
+                    <button @click="activeMemeIndex = activeMemeIndex > 0 ? activeMemeIndex - 1 : memeStack.length - 1"
+                        class="btn-main px-6 py-4 rounded-full flex items-center justify-center border-4 border-black text-3xl group bg-white hover:bg-yellow-300 transition-colors shadow-[6px_6px_0_rgba(0,0,0,1)]">
+                        <span class="transform group-hover:-translate-x-2 transition-transform">⬅️</span>
+                    </button>
+
+                    <div
+                        class="text-white text-3xl bangers tracking-widest bg-black px-6 py-2 border-4 border-yellow-300 rounded-xl shadow-[4px_4px_0_rgba(255,255,63,1)]">
+                        <span x-text="activeMemeIndex + 1"></span> / <span x-text="memeStack.length"></span>
+                    </div>
+
+                    <button @click="activeMemeIndex = activeMemeIndex < memeStack.length - 1 ? activeMemeIndex + 1 : 0"
+                        class="btn-main px-6 py-4 rounded-full flex items-center justify-center border-4 border-black text-3xl group bg-yellow-300 hover:bg-white transition-colors shadow-[6px_6px_0_rgba(0,0,0,1)]">
+                        <span class="transform group-hover:translate-x-2 transition-transform">➡️</span>
+                    </button>
+                </div>
+            </div>
+    </section>
+
+    <!-- 7. Roadmap Timeline -->
+    <section id="roadmap" class="py-16 md:py-32 bg-[#fafafa] text-black relative border-b-8 border-black overflow-hidden">
+        <div
+            class="absolute top-0 right-0 w-[800px] h-[800px] bg-yellow-100/50 rounded-full blur-[100px] opacity-60 -translate-y-1/2 translate-x-1/3">
+        </div>
+        <div class="container mx-auto px-6 max-w-5xl relative z-10">
+            <h2 class="text-5xl md:text-7xl lg:text-[6rem] text-center mb-28 drop-shadow-[4px_4px_0_rgba(0,0,0,0.1)]">THE <span
+                    class="text-yellow-600">BAT-PLAN</span></h2>
+
+            <div class="relative border-l-[10px] border-black ml-4 md:ml-0 md:left-1/2 md:-translate-x-1/2">
+                <!-- Step 1 -->
+                <div class="mb-24 md:w-1/2 md:ml-auto md:pl-16 relative" data-aos="fade-left" data-aos-offset="200">
+                    <div
+                        class="absolute -left-[3.1rem] md:-left-8 top-4 w-20 h-20 bg-yellow-400 border-[6px] border-black rounded-full flex items-center justify-center text-4xl bangers shadow-[5px_5px_0_rgba(0,0,0,1)] z-10 hover:scale-110 transition-transform">
+                        1</div>
+                    <div class="comic-card p-6 md:p-8 lg:p-6 md:p-10 bg-white">
+                        <h3 class="text-4xl mb-4 text-yellow-600">PHASE 1: GENESIS</h3>
+                        <p class="text-xl font-bold text-gray-700 leading-relaxed">Stealth launch while the world sleeps. Dexscreener paid immediately, social takeover, and initial community assembly.</p>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="mb-24 md:w-1/2 md:mr-auto md:pr-16 relative text-left md:text-right" data-aos="fade-right"
+                    data-aos-offset="200">
+                    <div
+                        class="absolute -left-[3.1rem] md:left-auto md:-right-8 top-4 w-20 h-20 bg-yellow-500 border-[6px] border-black rounded-full flex items-center justify-center text-4xl bangers shadow-[5px_5px_0_rgba(0,0,0,1)] z-10 hover:scale-110 transition-transform text-white drop-shadow-[2px_2px_0_rgba(0,0,0,1)]">
+                        2</div>
+                    <div class="comic-card p-6 md:p-8 lg:p-6 md:p-10 bg-white text-left">
+                        <h3 class="text-4xl mb-4 text-blue-600">PHASE 2: IGNITION</h3>
+                        <p class="text-xl font-bold text-gray-700 leading-relaxed">Dexscreener boosts activated. Launch marketing campaigns and secure moby marketing setup. Trending placements across tracking sites.</p>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="mb-10 md:w-1/2 md:ml-auto md:pl-16 relative" data-aos="fade-left" data-aos-offset="200">
+                    <div
+                        class="absolute -left-[3.1rem] md:-left-8 top-4 w-20 h-20 bg-yellow-400 border-[6px] border-black rounded-full flex items-center justify-center text-4xl bangers shadow-[5px_5px_0_rgba(0,0,0,1)] z-10 hover:scale-110 transition-transform">
+                        3</div>
+                    <div class="comic-card p-6 md:p-8 lg:p-6 md:p-10 bg-white border-dashed border-[5px]">
+                        <h3 class="text-4xl mb-4 text-purple-600">PHASE 3: ASCENSION</h3>
+                        <p class="text-xl font-bold text-gray-700 leading-relaxed">Reclaiming the 20M marketcap legacy. Major CEX integration, global campaigns, and setting Solana's biggest runner free.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. Social Proof (Satire News) -->
+    <section class="py-12 md:py-24 bg-black overflow-hidden border-b-8 border-black">
+        <h2
+            class="text-5xl lg:text-6xl text-center text-yellow-300 mb-16 drop-shadow-[2px_2px_0_rgba(255,255,255,0.2)]">
+            AS SEEN ON (SATIREE)</h2>
+        <div class="flex gap-6 md:p-10 px-4 animate-[marquee_25s_linear_infinite] whitespace-nowrap items-center h-full">
+            <div class="inline-block comic-card p-6 md:p-10 min-w-[400px] bg-white transform rotate-1 hover:rotate-0">
+                <h4
+                    class="font-bold border-b-4 border-black mb-4 uppercase text-2xl bangers tracking-widest text-red-600">
+                    The Degen Times</h4>
+                <p class="text-xl marker text-gray-800 whitespace-normal leading-relaxed">"Local degen turns $50 into a brand new Batmobile using $BATCAT profits."</p>
+            </div>
+            <div class="inline-block comic-card p-6 md:p-10 min-w-[400px] bg-yellow-100 transform -rotate-1 hover:rotate-0">
+                <h4
+                    class="font-bold border-b-4 border-black mb-4 uppercase text-2xl bangers tracking-widest text-blue-600">
+                    Frog Weekly</h4>
+                <p class="text-xl marker text-gray-800 whitespace-normal leading-relaxed">"Scientists confirm: $BATCAT is the only cure for a boring portfolio."</p>
+            </div>
+            <div class="inline-block comic-card p-6 md:p-10 min-w-[400px] bg-white transform rotate-2 hover:rotate-0">
+                <h4
+                    class="font-bold border-b-4 border-black mb-4 uppercase text-2xl bangers tracking-widest text-yellow-600">
+                    Wall St. Memes</h4>
+                <p class="text-xl marker text-gray-800 whitespace-normal leading-relaxed">"Degens investigate why the chart looks like a vertical skyscraper."</p>
+            </div>
+            <div class="inline-block comic-card p-6 md:p-10 min-w-[400px] bg-yellow-100 transform -rotate-2 hover:rotate-0">
+                <h4
+                    class="font-bold border-b-4 border-black mb-4 uppercase text-2xl bangers tracking-widest text-purple-600">
+                    CNN (Fake)</h4>
+                <p class="text-xl marker text-gray-800 whitespace-normal leading-relaxed">"BatCat officially declared the supreme ruler of Solana trenches."</p>
+            </div>
+            <!-- Duplicates to make marquee smooth -->
+            <div class="inline-block comic-card p-6 md:p-10 min-w-[400px] bg-white transform rotate-1 hover:rotate-0">
+                <h4
+                    class="font-bold border-b-4 border-black mb-4 uppercase text-2xl bangers tracking-widest text-red-600">
+                    The Degen Times</h4>
+                <p class="text-xl marker text-gray-800 whitespace-normal leading-relaxed">"Local degen turns $50 into a brand new Batmobile using $BATCAT profits."</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. How To Buy -->
+    <section id="buy" class="py-16 md:py-32 bg-slate-900 text-black border-b-8 border-black relative overflow-hidden">
+        <!-- Dot Matrix Background -->
+        <div class="absolute inset-0 bg-black opacity-10"
+            style="background-image: radial-gradient(circle, #fff 3px, transparent 3px); background-size: 40px 40px;">
+        </div>
+        <div class="container mx-auto px-6 max-w-7xl relative z-10">
+            <h2 class="text-5xl md:text-7xl lg:text-[6rem] text-center mb-24 drop-shadow-[5px_5px_0_rgba(0,0,0,1)] text-yellow-300">
+                <span class="underline decoration-wavy decoration-yellow-300 border-black">GET THE BAG</span>
+            </h2>
+            <div class="grid md:grid-cols-3 gap-6 md:p-10 lg:gap-12">
+                <div class="comic-card p-6 md:p-10 bg-white flex flex-col items-center text-center" data-aos="zoom-in"
+                    data-aos-duration="600">
+                    <div
+                        class="w-24 h-24 bg-yellow-300 rounded-full border-4 border-black flex items-center justify-center text-4xl mb-6 shadow-[4px_4px_0_rgba(0,0,0,1)]">
+                        1</div>
+                    <h3 class="text-3xl lg:text-4xl mb-4 uppercase">LOAD WALLET</h3>
+                    <p class="text-xl font-bold text-gray-600 leading-relaxed">Get some SOL in your Phantom or Solflare wallet. Ready for action.</p>
+                </div>
+                <div class="comic-card p-6 md:p-10 bg-white flex flex-col items-center text-center" data-aos="zoom-in"
+                    data-aos-duration="600" data-aos-delay="150">
+                    <div
+                        class="w-24 h-24 bg-blue-300 rounded-full border-4 border-black flex items-center justify-center text-4xl mb-6 shadow-[4px_4px_0_rgba(0,0,0,1)]">
+                        2</div>
+                    <h3 class="text-3xl lg:text-4xl mb-4 uppercase">SWAP ON RAYDIUM</h3>
+                    <p class="text-xl font-bold text-gray-600 leading-relaxed">Connect to Jupiter or Raydium. Paste our CA (HCkh...pump). Slippage auto.</p>
+                </div>
+                <div class="comic-card p-6 md:p-10 bg-white flex flex-col items-center text-center" data-aos="zoom-in"
+                    data-aos-duration="600" data-aos-delay="300">
+                    <div
+                        class="w-24 h-24 bg-purple-300 rounded-full border-4 border-black flex items-center justify-center text-5xl mb-6 shadow-[4px_4px_0_rgba(0,0,0,1)]">
+                        🦇</div>
+                    <h3 class="text-3xl lg:text-4xl mb-4 uppercase">HODL FOR GLORY</h3>
+                    <p class="text-xl font-bold text-gray-600 leading-relaxed">Sit back, watch the bat-signal rise, and let's run it up to 20M+.</p>
+                </div>
+            </div>
+
+            <div class="mt-20 text-center" data-aos="fade-up">
+                <div
+                    class="inline-block bg-white border-[6px] border-black rounded-3xl p-6 lg:p-6 md:p-10 shadow-[8px_8px_0_rgba(0,0,0,1)] transform hover:scale-105 transition-transform duration-300">
+                    <p class="text-2xl font-bold uppercase mb-4 text-gray-500">Official Contract Address</p>
+                    <div class="flex items-center gap-4 bg-gray-100 p-4 rounded-xl border-4 border-black">
+                        <code
+                            class="text-xl md:text-3xl text-purple-600 break-all select-all font-mono">HCkhfdDNF2dqMxxtL51AzgWU26MBNkUkEzGAHtqkpump</code>
+                        <button class="btn-main px-4 py-2 text-2xl"
+                            onclick="navigator.clipboard.writeText('HCkhfdDNF2dqMxxtL51AzgWU26MBNkUkEzGAHtqkpump'); alert('CA Copied! Reviving the trenches!')">COPY</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. External Links / Socials -->
+    <section class="py-16 md:py-32 bg-black text-white border-b-8 border-black relative overflow-hidden">
+        <!-- Elegant subtle glowing orb & Starfield -->
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.03)_1px,_transparent_1px)]"
+            style="background-size: 24px 24px;"></div>
+        <div
+            class="absolute top-0 right-0 w-[600px] h-[600px] bg-amber-500/10 rounded-full blur-[120px] pointer-events-none mix-blend-screen animate-pulse">
+        </div>
+        <div class="absolute bottom-0 left-0 w-[600px] h-[600px] bg-yellow-400/10 rounded-full blur-[120px] pointer-events-none mix-blend-screen animate-pulse"
+            style="animation-delay: 2s;">
+        </div>
+
+        <div class="container mx-auto px-6 text-center max-w-7xl relative z-10">
+            <h2 class="text-5xl md:text-[5rem] lg:text-[7rem] mb-4 bg-gradient-to-br from-yellow-300 via-yellow-400 to-yellow-600 text-transparent bg-clip-text bangers tracking-widest leading-none drop-shadow-2xl"
+                data-aos="zoom-in" data-aos-duration="1000">JOIN THE TRENCHES
+            </h2>
+            <p class="text-xl lg:text-3xl text-white marker mb-24 font-bold" data-aos="fade-up" data-aos-delay="200">
+                Reviving the Solana trenches. The bat-signal is active.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:p-8 lg:gap-6 md:p-10 relative px-4">
+                <!-- Twitter -->
+                <a href="https://x.com/batcatsoi?s=21" data-aos="fade-up" data-aos-delay="0"
+                    class="group relative h-40 md:h-56 rounded-[2.5rem] border border-white/10 bg-white/5 backdrop-blur-xl overflow-hidden transform hover:-translate-y-4 transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] shadow-[0_8px_32px_rgba(0,0,0,0.5)] hover:shadow-[0_20px_40px_rgba(29,161,242,0.3)] hover:border-[#1DA1F2]/50">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-[#1DA1F2]/20 via-[#1DA1F2]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    </div>
+                    <div
+                        class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent">
+                    </div>
+                    <div
+                        class="absolute inset-0 flex flex-col items-center justify-center transition-transform duration-500">
+                        <div
+                            class="w-20 h-20 mb-6 rounded-full bg-white/5 border border-white/10 flex items-center justify-center shadow-inner group-hover:scale-110 group-hover:bg-[#1DA1F2]/20 transition-all duration-500">
+                            <span
+                                class="text-4xl drop-shadow-[0_0_15px_rgba(29,161,242,0.8)] filter grayscale group-hover:grayscale-0 transition-all duration-500">🐦</span>
+                        </div>
+                        <span
+                            class="text-2xl lg:text-3xl font-bold font-sans text-yellow-500 group-hover:text-yellow-300 tracking-widest transition-colors duration-300">TWITTER / X</span>
+                    </div>
+                </a>
+
+                <!-- Telegram -->
+                <a href="https://t.me/catbatonsolana" data-aos="fade-up" data-aos-delay="150"
+                    class="group relative h-40 md:h-56 rounded-[2.5rem] border border-white/10 bg-white/5 backdrop-blur-xl overflow-hidden transform hover:-translate-y-4 transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] shadow-[0_8px_32px_rgba(0,0,0,0.5)] hover:shadow-[0_20px_40px_rgba(0,136,204,0.3)] hover:border-[#0088cc]/50 lg:-translate-y-6">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-[#0088cc]/20 via-[#0088cc]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    </div>
+                    <div
+                        class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent">
+                    </div>
+                    <div
+                        class="absolute inset-0 flex flex-col items-center justify-center transition-transform duration-500">
+                        <div
+                            class="w-20 h-20 mb-6 rounded-full bg-white/5 border border-white/10 flex items-center justify-center shadow-inner group-hover:scale-110 group-hover:bg-[#0088cc]/20 transition-all duration-500">
+                            <span
+                                class="text-4xl drop-shadow-[0_0_15px_rgba(0,136,204,0.8)] filter grayscale group-hover:grayscale-0 transition-all duration-500">✈️</span>
+                        </div>
+                        <span
+                            class="text-2xl lg:text-3xl font-bold font-sans text-yellow-500 group-hover:text-yellow-300 tracking-widest transition-colors duration-300">TELEGRAM</span>
+                    </div>
+                </a>
+
+                <!-- Dexscreener Card -->
+                <a href="https://dexscreener.com/solana/HCkhfdDNF2dqMxxtL51AzgWU26MBNkUkEzGAHtqkpump" data-aos="fade-up" data-aos-delay="300"
+                    class="group relative h-40 md:h-56 rounded-[2.5rem] border border-white/10 bg-white/5 backdrop-blur-xl overflow-hidden transform hover:-translate-y-4 transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] shadow-[0_8px_32px_rgba(0,0,0,0.5)] hover:shadow-[0_20px_40px_rgba(240,208,64,0.3)] hover:border-[#f0d040]/50">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-[#f0d040]/20 via-[#f0d040]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    </div>
+                    <div
+                        class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent">
+                    </div>
+                    <div
+                        class="absolute inset-0 flex flex-col items-center justify-center transition-transform duration-500">
+                        <div
+                            class="w-20 h-20 mb-6 rounded-full bg-white/5 border border-white/10 flex items-center justify-center shadow-inner group-hover:scale-110 group-hover:bg-[#f0d040]/20 transition-all duration-500">
+                            <span
+                                class="text-4xl drop-shadow-[0_0_15px_rgba(240,208,64,0.8)] filter grayscale group-hover:grayscale-0 transition-all duration-500">📈</span>
+                        </div>
+                        <span
+                            class="text-2xl lg:text-3xl font-bold font-sans text-yellow-500 group-hover:text-yellow-300 tracking-widest transition-colors duration-300">DEXSCREENER</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 11. FAQ Accordion -->
+    <section class="py-16 md:py-32 bg-[#fafafa] text-black border-y-8 border-black">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <h2 class="text-5xl md:text-7xl text-center mb-20 drop-shadow-[3px_3px_0_rgba(0,0,0,0.2)]"
+                data-aos="fade-down">COMMON DOUBTS
+            </h2>
+            <div class="space-y-6">
+                <!-- FAQ 1 -->
+                <div data-aos="fade-left" data-aos-delay="0"
+                    class="comic-card border-[5px] border-black rounded-2xl overflow-hidden shadow-[8px_8px_0_rgba(0,0,0,1)] transition-all hover:scale-[1.02] transform">
+                    <button @click="faqOpen === 1 ? faqOpen = null : faqOpen = 1"
+                        class="w-full p-6 md:p-8 text-left text-3xl font-bold flex justify-between items-center bg-yellow-300 transition-colors"
+                        :class="faqOpen === 1 ? 'bg-yellow-400' : 'hover:bg-yellow-400'">
+                        Is this a rug?
+                        <span
+                            class="text-4xl bangers bg-white border-4 border-black w-12 h-12 flex items-center justify-center rounded-full shadow-[4px_4px_0_rgba(0,0,0,1)] transition-transform duration-300"
+                            :class="faqOpen === 1 ? 'rotate-180' : ''" x-text="faqOpen === 1 ? '-' : '+'"></span>
+                    </button>
+                    <div x-show="faqOpen === 1" x-collapse>
+                        <div
+                            class="p-6 md:p-8 text-2xl font-bold bg-white border-t-[5px] border-black text-gray-700 leading-relaxed shadow-inner">
+                            <span class="typing marker text-xl text-black">No, we are here to revive the trenches. Dexscreener is paid immediately, liquidity is burnt, and the community is in charge.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div data-aos="fade-right" data-aos-delay="100"
+                    class="comic-card border-[5px] border-black rounded-2xl overflow-hidden shadow-[8px_8px_0_rgba(0,0,0,1)] transition-all hover:scale-[1.02] transform">
+                    <button @click="faqOpen === 2 ? faqOpen = null : faqOpen = 2"
+                        class="w-full p-6 md:p-8 text-left text-3xl font-bold flex justify-between items-center bg-yellow-400 transition-colors"
+                        :class="faqOpen === 2 ? 'bg-yellow-500' : 'hover:bg-yellow-500'">
+                        Will I get rich?
+                        <span
+                            class="text-4xl bangers bg-white border-4 border-black w-12 h-12 flex items-center justify-center rounded-full shadow-[4px_4px_0_rgba(0,0,0,1)] transition-transform duration-300"
+                            :class="faqOpen === 2 ? 'rotate-180' : ''" x-text="faqOpen === 2 ? '-' : '+'"></span>
+                    </button>
+                    <div x-show="faqOpen === 2" x-collapse>
+                        <div
+                            class="p-6 md:p-8 text-2xl font-bold bg-white border-t-[5px] border-black text-gray-700 leading-relaxed shadow-inner">
+                            <span class="typing marker text-xl text-black">We aren't financial advisors. We are cat-degens on the internet. But in 2024, BatCat ran to 20M. We aim to recreate that run.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div data-aos="fade-left" data-aos-delay="200"
+                    class="comic-card border-[5px] border-black rounded-2xl overflow-hidden shadow-[8px_8px_0_rgba(0,0,0,1)] transition-all hover:scale-[1.02] transform">
+                    <button @click="faqOpen === 3 ? faqOpen = null : faqOpen = 3"
+                        class="w-full p-6 md:p-8 text-left text-3xl font-bold flex justify-between items-center bg-purple-300 transition-colors"
+                        :class="faqOpen === 3 ? 'bg-purple-400' : 'hover:bg-purple-400'">
+                        Where is the utility?
+                        <span
+                            class="text-4xl bangers bg-white border-4 border-black w-12 h-12 flex items-center justify-center rounded-full shadow-[4px_4px_0_rgba(0,0,0,1)] transition-transform duration-300"
+                            :class="faqOpen === 3 ? 'rotate-180' : ''" x-text="faqOpen === 3 ? '-' : '+'"></span>
+                    </button>
+                    <div x-show="faqOpen === 3" x-collapse>
+                        <div
+                            class="p-6 md:p-8 text-2xl font-bold bg-white border-t-[5px] border-black text-gray-700 leading-relaxed shadow-inner">
+                            <span class="typing marker text-xl text-black">Saving the trenches is the utility. Pure meme power, fast boosts, continuous trending, and a highly aligned community.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 12. Final CTA Strip -->
+    <section
+        class="py-20 md:py-40 bg-gradient-to-br from-yellow-300 via-yellow-400 to-yellow-500 text-black border-y-8 border-black relative overflow-hidden flex items-center justify-center min-h-[70vh]">
+        <!-- Elegant, Simple Background Elements -->
+        <div class="absolute inset-0 pointer-events-none"
+            style="background-image: radial-gradient(rgba(0,0,0,0.05) 2px, transparent 2px); background-size: 30px 30px;">
+        </div>
+        <div
+            class="absolute left-0 top-0 w-[600px] h-[600px] bg-white rounded-full blur-[150px] opacity-40 mix-blend-overlay animate-pulse">
+        </div>
+        <div class="absolute right-0 bottom-0 w-[600px] h-[600px] bg-white rounded-full blur-[150px] opacity-40 mix-blend-overlay animate-pulse"
+            style="animation-delay: 2s;"></div>
+
+        <div class="container mx-auto px-6 text-center relative z-10 flex flex-col items-center max-w-4xl">
+            <h2 class="text-5xl md:text-[7rem] lg:text-[8rem] mb-6 drop-shadow-[5px_5px_0_rgba(255,255,255,1)] text-black leading-none bangers tracking-wide"
+                data-aos="fade-up" data-aos-duration="1000">
+                SUMMON <br />THE BATCAT.
+            </h2>
+            <p class="text-2xl lg:text-3xl font-bold font-sans text-gray-800 mb-14 drop-shadow-sm opacity-90 marker italic"
+                data-aos="fade-up" data-aos-delay="150">
+                "The team is committed, Dexscreener is paid, boosts are active, and the trenches are revived. Reclaim the legacy."
+            </p>
+
+            <div data-aos="zoom-in" data-aos-delay="300" class="relative group mt-6">
+                <!-- Outer Glow -->
+                <div
+                    class="absolute -inset-2 bg-black rounded-full blur-xl opacity-30 group-hover:opacity-60 transition duration-500">
+                </div>
+                <!-- Button -->
+                <a href="#buy"
+                    class="relative px-10 md:px-16 lg:px-24 py-6 md:py-8 lg:py-10 text-3xl md:text-[2.5rem] lg:text-[3.5rem] bg-black text-white rounded-full hover:bg-white hover:text-black border-8 border-black transition-all duration-300 transform hover:-translate-y-2 shadow-[10px_10px_0_rgba(0,0,0,1)] hover:shadow-[0px_0px_0_rgba(0,0,0,1)] bangers tracking-widest inline-flex items-center gap-4 group-hover:scale-105">
+                    SUMMON BATCAT
+                    <svg xmlns="http://www.w3.org/MCCR2000"
+                        class="w-10 h-10 transform group-hover:translate-x-2 transition-transform" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
+                            d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 13. Footer -->
+    <footer class="bg-black text-white py-12 md:py-24 relative overflow-hidden">
+        <div class="absolute inset-0 bg-slate-900 opacity-20 pointer-events-none"
+            style="background-image: radial-gradient(circle, #38b000 1px, transparent 1px); background-size: 20px 20px;">
+        </div>
+        <div class="container mx-auto px-6 relative z-10 max-w-7xl">
+            <div class="grid md:grid-cols-4 gap-8 md:gap-16 mb-16">
+                <div class="md:col-span-1">
+                    <h3 class="text-5xl mb-6 text-yellow-300 drop-shadow-[2px_2px_0_rgba(240,208,64,1)]">BATCAT</h3>
+                    <p class="opacity-80 marker text-2xl text-gray-400">Reclaiming the 20M Solana legacy. Recreating BatCat for the degens.</p>
+                </div>
+                <div>
+                    <h4
+                        class="text-2xl font-black mb-6 uppercase text-yellow-500 tracking-widest border-b-2 border-yellow-900 pb-2 inline-block">
+                        LINKS</h4>
+                    <ul class="space-y-4 font-bold text-xl">
+                        <li><a href="https://solscan.io/token/HCkhfdDNF2dqMxxtL51AzgWU26MBNkUkEzGAHtqkpump" target="_blank"
+                                class="hover:text-yellow-300 hover:translate-x-2 transition-transform inline-block">Solscan
+                                →</a></li>
+                        <li><a href="https://dexscreener.com/solana/HCkhfdDNF2dqMxxtL51AzgWU26MBNkUkEzGAHtqkpump" target="_blank"
+                                class="hover:text-yellow-300 hover:translate-x-2 transition-transform inline-block">Dexscreener
+                                →</a></li>
+                        <li><a href="https://jup.ag/swap/SOL-HCkhfdDNF2dqMxxtL51AzgWU26MBNkUkEzGAHtqkpump" target="_blank"
+                                class="hover:text-yellow-300 hover:translate-x-2 transition-transform inline-block">Jupiter Swap
+                                →</a></li>
+                    </ul>
+                </div>
+                <div class="md:col-span-2">
+                    <h4
+                        class="text-2xl font-black mb-6 uppercase text-red-500 tracking-widest border-b-2 border-red-900 pb-2 inline-block">
+                        DISCLAIMER (THE LAWYER STUFF)</h4>
+                    <p class="text-sm lg:text-base font-bold text-gray-500 leading-loose">
+                        $BATCAT is a meme coin reviving the legacy of the 2024 BatCat. It has no intrinsic value or expectation of financial return. There is no formal team or roadmap. The coin is completely useless and for entertainment purposes only. Do not invest money you can't afford to lose. Also, BatCat ain't legal tender.
+                    </p>
+                </div>
+            </div>
+            <div class="text-center pt-12 border-t-[3px] border-white/10 flex flex-col items-center">
+                <p class="text-3xl marker text-gray-400 mb-4">MADE WITH <span
+                        class="text-yellow-500 animate-pulse inline-block">💛</span> FOR THE DEGENS OF THE WORLD</p>
+                <p class="text-sm font-bold text-gray-700 uppercase tracking-widest">© 2026 BATCAT. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox Modal -->
+    <div x-show="lightbox" x-transition.opacity
+        class="fixed inset-0 z-[100] bg-black/95 flex items-center justify-center p-6 backdrop-blur-sm"
+        @click="lightbox = false" style="display: none;">
+        <div class="relative max-w-5xl w-full" @click.stop>
+            <img :src="imgSource"
+                class="w-full comic-card border-[8px] bg-white rounded-3xl shadow-[0_0_50px_rgba(255,255,63,0.3)]">
+            <button
+                class="absolute -top-16 right-0 text-white text-6xl hover:text-yellow-300 transition-colors drop-shadow-[2px_2px_0_rgba(0,0,0,1)]"
+                @click="lightbox = false">&times;</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100,
+            easing: 'ease-out-cubic'
+        });
+
+        // Elegant Smooth Scrolling With Offset & Active state
+        document.addEventListener("DOMContentLoaded", () => {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('section[id]');
+            const headerOffset = 100;
+
+            // Click Effect -> Smooth Scroll
+            navLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    const targetId = this.getAttribute('href');
+                    if (!targetId || targetId === '#') return;
+
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        e.preventDefault();
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Scroll Observer -> Manage Active Class Elegantly
+            window.addEventListener('scroll', () => {
+                let currentSection = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    // Trigger active state when section gets near top
+                    if (pageYOffset >= (sectionTop - headerOffset - 100)) {
+                        currentSection = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${currentSection}`) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        });
+
+        // Persistent Typing Effect: Re-triggers whenever element becomes visible (e.g., FAQ opened)
+        document.querySelectorAll('.typing').forEach(el => {
+            const fullText = el.innerText;
+            el.innerText = '';
+            let timer = null;
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Clear existing timer and reset text to start fresh
+                        clearInterval(timer);
+                        el.innerText = '';
+                        let i = 0;
+
+                        // Small delay to let the opening animation (like x-collapse) settle
+                        setTimeout(() => {
+                            timer = setInterval(() => {
+                                if (i < fullText.length) {
+                                    el.innerText += fullText.charAt(i);
+                                    i++;
+                                } else {
+                                    clearInterval(timer);
+                                }
+                            }, 25);
+                        }, 100);
+                    } else {
+                        // Clean up when hidden
+                        clearInterval(timer);
+                        el.innerText = '';
+                    }
+                });
+            }, { threshold: 0.01 });
+            observer.observe(el);
+        });
+
+        // Dexscreener API Integration
+        async function fetchTokenStats() {
+            try {
+                const response = await fetch('https://api.dexscreener.com/latest/dex/tokens/HCkhfdDNF2dqMxxtL51AzgWU26MBNkUkEzGAHtqkpump');
+                const data = await response.json();
+                if (data.pairs && data.pairs.length > 0) {
+                    const pair = data.pairs[0];
+                    const price = parseFloat(pair.priceUsd);
+                    const mcap = parseFloat(pair.fdv);
+                    
+                    document.getElementById('stat-price').innerText = price < 0.01 ? '$' + price.toFixed(8) : '$' + price.toFixed(4);
+                    
+                    if (mcap >= 1000000) {
+                        document.getElementById('stat-mcap').innerText = '$' + (mcap / 1000000).toFixed(2) + 'M';
+                    } else if (mcap >= 1000) {
+                        document.getElementById('stat-mcap').innerText = '$' + (mcap / 1000).toFixed(2) + 'K';
+                    } else {
+                        document.getElementById('stat-mcap').innerText = '$' + mcap.toFixed(2);
+                    }
+                }
+            } catch (err) {
+                console.error('Failed to fetch stats from Dexscreener:', err);
+            }
+        }
+        
+        fetchTokenStats();
+        setInterval(fetchTokenStats, 30000); // Update every 30s
+    </script>
+</body>
+
+</html>
