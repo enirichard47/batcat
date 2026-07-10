@@ -249,6 +249,8 @@
             <nav class="hidden lg:flex gap-6 md:p-10 marker text-2xl h-full items-center">
                 <a href="#about"
                     class="nav-link text-white hover:text-yellow-300 hover:-translate-y-1 transition-all drop-shadow-[2px_2px_0_rgba(0,0,0,1)]">Lore</a>
+                <a href="#vision"
+                    class="nav-link text-white hover:text-yellow-300 hover:-translate-y-1 transition-all drop-shadow-[2px_2px_0_rgba(0,0,0,1)]">Vision</a>
                 <a href="#stats"
                     class="nav-link text-white hover:text-yellow-300 hover:-translate-y-1 transition-all drop-shadow-[2px_2px_0_rgba(0,0,0,1)]">Radar</a>
                 <a href="#tokenomics"
@@ -278,6 +280,8 @@
             <div class="flex flex-col items-center py-6 gap-6 marker text-3xl">
                 <a href="#about" @click="mobileMenu = false"
                     class="nav-link text-white hover:text-yellow-300 drop-shadow-[2px_2px_0_rgba(0,0,0,1)] w-full text-center py-2">Lore</a>
+                <a href="#vision" @click="mobileMenu = false"
+                    class="nav-link text-white hover:text-yellow-300 drop-shadow-[2px_2px_0_rgba(0,0,0,1)] w-full text-center py-2">Vision</a>
                 <a href="#stats" @click="mobileMenu = false"
                     class="nav-link text-white hover:text-yellow-300 drop-shadow-[2px_2px_0_rgba(0,0,0,1)] w-full text-center py-2">Radar</a>
                 <a href="#tokenomics" @click="mobileMenu = false"
@@ -383,6 +387,62 @@
                         <div class="hidden">
                             <template x-init="setInterval(() => slide = (slide + 1) % 3, 3000)"></template>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3.5 Community Message Section -->
+    <section id="vision" class="py-16 md:py-24 bg-slate-900 text-white relative border-b-8 border-black overflow-hidden">
+        <!-- Glow effects -->
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(240,208,64,0.05)_1px,_transparent_1px)]"
+            style="background-size: 24px 24px;"></div>
+        <div class="absolute top-1/2 left-10 w-96 h-96 bg-yellow-500/10 rounded-full blur-[120px] pointer-events-none mix-blend-screen animate-pulse"></div>
+        
+        <div class="container mx-auto px-6 max-w-4xl relative z-10">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <p class="text-yellow-300 bangers text-3xl tracking-widest drop-shadow-md mb-2">OFFICIAL TRANSMISSION</p>
+                <h2 class="text-5xl md:text-7xl mb-4 drop-shadow-[5px_5px_0_rgba(0,0,0,1)] text-white">COMMUNITY MESSAGE</h2>
+                <div class="w-24 h-2 bg-yellow-400 mx-auto rounded-full mt-4"></div>
+            </div>
+
+            <!-- Comic book bubble or premium paper letter style card -->
+            <div class="comic-card bg-white text-black p-8 md:p-12 relative border-4 border-black" data-aos="zoom-in" data-aos-duration="800">
+                <!-- Top pin or tape style decoration -->
+                <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 w-48 h-8 bg-yellow-400 border-4 border-black shadow-[4px_4px_0_rgba(0,0,0,1)] flex items-center justify-center font-bold text-sm tracking-wider uppercase">
+                    FROM THE FOUNDERS
+                </div>
+
+                <div class="space-y-6 text-xl md:text-2xl font-bold leading-relaxed text-gray-800 font-sans mt-4">
+                    <p class="border-l-4 border-yellow-500 pl-4 italic text-2xl md:text-3xl text-black">
+                        "BatCat was never created to be 'just another memecoin.'"
+                    </p>
+                    <p>
+                        From day one, our vision has been much bigger. We’re building a real brand with a long-term future.
+                    </p>
+                    <p>
+                        We’ve already taken the first step by founding our company. Our goal is to create an entire <span class="bg-yellow-100 px-1 border-b-2 border-yellow-500">BATCAT ecosystem</span>, including an official online store with merchandise such as T-shirts, hoodies, keychains, caps, stickers, and much more.
+                    </p>
+                    <p>
+                        This project isn’t about a quick pump. It’s about creating something people will still recognize and support years from now.
+                    </p>
+                    <p>
+                        We’ll continue investing in marketing, partnerships, community growth, and expanding the BATCAT brand step by step.
+                    </p>
+                    <p class="pt-4 border-t-2 border-black border-dashed text-gray-900 font-serif">
+                        Thank you for believing in our vision and for being here from the very beginning. This is only the start.
+                    </p>
+                </div>
+
+                <!-- Signature / Logo -->
+                <div class="mt-8 flex flex-col md:flex-row items-center justify-between gap-4 pt-6">
+                    <div class="flex items-center gap-3">
+                        <img src="images/hero.jpg" class="w-12 h-12 rounded-full border-2 border-black object-cover" alt="BatCat Signature">
+                        <span class="marker text-2xl text-black font-extrabold">The BatCat Team 🦇</span>
+                    </div>
+                    <div class="bg-black text-yellow-300 font-mono text-xs px-3 py-1 rounded border-2 border-black">
+                        SECURE TRANSMISSION // EST. 2026
                     </div>
                 </div>
             </div>
@@ -595,37 +655,133 @@
                     class="text-yellow-600">BAT-PLAN</span></h2>
 
             <div class="relative border-l-[10px] border-black ml-4 md:ml-0 md:left-1/2 md:-translate-x-1/2">
-                <!-- Step 1 -->
+                <!-- Step 1: Phase 1 -->
                 <div class="mb-24 md:w-1/2 md:ml-auto md:pl-16 relative" data-aos="fade-left" data-aos-offset="200">
                     <div
                         class="absolute -left-[3.1rem] md:-left-8 top-4 w-20 h-20 bg-yellow-400 border-[6px] border-black rounded-full flex items-center justify-center text-4xl bangers shadow-[5px_5px_0_rgba(0,0,0,1)] z-10 hover:scale-110 transition-transform">
                         1</div>
-                    <div class="comic-card p-6 md:p-8 lg:p-6 md:p-10 bg-white">
-                        <h3 class="text-4xl mb-4 text-yellow-600">PHASE 1: GENESIS</h3>
-                        <p class="text-xl font-bold text-gray-700 leading-relaxed">Stealth launch while the world sleeps. Social takeover, initial community assembly, and marketing kick-off.</p>
+                    <div class="comic-card p-6 md:p-8 lg:p-6 md:p-10 bg-white text-left">
+                        <h3 class="text-4xl mb-4 text-yellow-600">PHASE 1: FOUNDATION</h3>
+                        <ul class="space-y-3 text-xl font-bold text-gray-700 leading-relaxed">
+                            <li class="flex items-start gap-3">
+                                <span class="text-yellow-500 shrink-0">🦇</span>
+                                <span>Successful token launch</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-yellow-500 shrink-0">🦇</span>
+                                <span>Build a strong and active community</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-yellow-500 shrink-0">🦇</span>
+                                <span>Establish official social media channels</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-yellow-500 shrink-0">🦇</span>
+                                <span>Expand our Telegram and X presence</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-yellow-500 shrink-0">🦇</span>
+                                <span>Begin strategic marketing campaigns</span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
 
-                <!-- Step 2 -->
+                <!-- Step 2: Phase 2 -->
                 <div class="mb-24 md:w-1/2 md:mr-auto md:pr-16 relative text-left md:text-right" data-aos="fade-right"
                     data-aos-offset="200">
                     <div
                         class="absolute -left-[3.1rem] md:left-auto md:-right-8 top-4 w-20 h-20 bg-yellow-500 border-[6px] border-black rounded-full flex items-center justify-center text-4xl bangers shadow-[5px_5px_0_rgba(0,0,0,1)] z-10 hover:scale-110 transition-transform text-white drop-shadow-[2px_2px_0_rgba(0,0,0,1)]">
                         2</div>
                     <div class="comic-card p-6 md:p-8 lg:p-6 md:p-10 bg-white text-left">
-                        <h3 class="text-4xl mb-4 text-blue-600">PHASE 2: IGNITION</h3>
-                        <p class="text-xl font-bold text-gray-700 leading-relaxed">Dexscreener boosts activated. Launch marketing campaigns and secure moby marketing setup. Trending placements across tracking sites.</p>
+                        <h3 class="text-4xl mb-4 text-blue-600">PHASE 2: BRAND BUILDING</h3>
+                        <ul class="space-y-3 text-xl font-bold text-gray-700 leading-relaxed">
+                            <li class="flex items-start gap-3">
+                                <span class="text-blue-500 shrink-0">🦇</span>
+                                <span>Official BATCAT website <span class="text-sm font-semibold text-gray-500 block md:inline md:ml-1">(the current one is temporary)</span></span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-blue-500 shrink-0">🦇</span>
+                                <span>Launch the BATCAT online store</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-blue-500 shrink-0">🦇</span>
+                                <span>Merchandise collection <span class="text-sm font-semibold text-gray-500 block md:inline md:ml-1">(T-shirts, hoodies, caps, keychains, stickers & more)</span></span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-blue-500 shrink-0">🦇</span>
+                                <span>Community events and giveaways</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-blue-500 shrink-0">🦇</span>
+                                <span>Strategic partnerships</span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
 
-                <!-- Step 3 -->
-                <div class="mb-10 md:w-1/2 md:ml-auto md:pl-16 relative" data-aos="fade-left" data-aos-offset="200">
+                <!-- Step 3: Phase 3 -->
+                <div class="mb-24 md:w-1/2 md:ml-auto md:pl-16 relative" data-aos="fade-left" data-aos-offset="200">
                     <div
                         class="absolute -left-[3.1rem] md:-left-8 top-4 w-20 h-20 bg-yellow-400 border-[6px] border-black rounded-full flex items-center justify-center text-4xl bangers shadow-[5px_5px_0_rgba(0,0,0,1)] z-10 hover:scale-110 transition-transform">
                         3</div>
-                    <div class="comic-card p-6 md:p-8 lg:p-6 md:p-10 bg-white border-dashed border-[5px]">
-                        <h3 class="text-4xl mb-4 text-purple-600">PHASE 3: ASCENSION</h3>
-                        <p class="text-xl font-bold text-gray-700 leading-relaxed">Reclaiming the 20M marketcap legacy. Major CEX integration, global campaigns, and setting Solana's biggest runner free.</p>
+                    <div class="comic-card p-6 md:p-8 lg:p-6 md:p-10 bg-white text-left">
+                        <h3 class="text-4xl mb-4 text-purple-600">PHASE 3: ECOSYSTEM</h3>
+                        <ul class="space-y-3 text-xl font-bold text-gray-700 leading-relaxed">
+                            <li class="flex items-start gap-3">
+                                <span class="text-purple-600 shrink-0">🦇</span>
+                                <span>Register and expand the BATCAT company</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-purple-600 shrink-0">🦇</span>
+                                <span>Build BATCAT into a recognized global brand</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-purple-600 shrink-0">🦇</span>
+                                <span>Collaborate with creators and businesses</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-purple-600 shrink-0">🦇</span>
+                                <span>Grow the BATCAT community worldwide</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-purple-600 shrink-0">🦇</span>
+                                <span>Continue developing new products and experiences</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Step 4: Phase 4 -->
+                <div class="mb-10 md:w-1/2 md:mr-auto md:pr-16 relative text-left md:text-right" data-aos="fade-right"
+                    data-aos-offset="200">
+                    <div
+                        class="absolute -left-[3.1rem] md:left-auto md:-right-8 top-4 w-20 h-20 bg-yellow-500 border-[6px] border-black rounded-full flex items-center justify-center text-4xl bangers shadow-[5px_5px_0_rgba(0,0,0,1)] z-10 hover:scale-110 transition-transform text-white drop-shadow-[2px_2px_0_rgba(0,0,0,1)]">
+                        4</div>
+                    <div class="comic-card p-6 md:p-8 lg:p-6 md:p-10 bg-white text-left border-dashed border-[5px]">
+                        <h3 class="text-4xl mb-4 text-red-600">PHASE 4: LONG-TERM VISION</h3>
+                        <ul class="space-y-3 text-xl font-bold text-gray-700 leading-relaxed">
+                            <li class="flex items-start gap-3">
+                                <span class="text-red-500 shrink-0">🦇</span>
+                                <span>Turn BATCAT into more than just a memecoin</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-red-500 shrink-0">🦇</span>
+                                <span>Build a brand people can recognize and wear</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-red-500 shrink-0">🦇</span>
+                                <span>Expand our ecosystem with new ideas and opportunities</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-red-500 shrink-0">🦇</span>
+                                <span>Create long-term value driven by the community</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-red-500 shrink-0">🦇</span>
+                                <span>Make BATCAT a project that lasts for years, not just days</span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
