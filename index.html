@@ -251,6 +251,8 @@
                     class="nav-link text-white hover:text-yellow-300 hover:-translate-y-1 transition-all drop-shadow-[2px_2px_0_rgba(0,0,0,1)]">Lore</a>
                 <a href="#vision"
                     class="nav-link text-white hover:text-yellow-300 hover:-translate-y-1 transition-all drop-shadow-[2px_2px_0_rgba(0,0,0,1)]">Vision</a>
+                <a href="#whitepaper"
+                    class="nav-link text-white hover:text-yellow-300 hover:-translate-y-1 transition-all drop-shadow-[2px_2px_0_rgba(0,0,0,1)]">Bat-Paper</a>
                 <a href="#stats"
                     class="nav-link text-white hover:text-yellow-300 hover:-translate-y-1 transition-all drop-shadow-[2px_2px_0_rgba(0,0,0,1)]">Radar</a>
                 <a href="#tokenomics"
@@ -282,6 +284,8 @@
                     class="nav-link text-white hover:text-yellow-300 drop-shadow-[2px_2px_0_rgba(0,0,0,1)] w-full text-center py-2">Lore</a>
                 <a href="#vision" @click="mobileMenu = false"
                     class="nav-link text-white hover:text-yellow-300 drop-shadow-[2px_2px_0_rgba(0,0,0,1)] w-full text-center py-2">Vision</a>
+                <a href="#whitepaper" @click="mobileMenu = false"
+                    class="nav-link text-white hover:text-yellow-300 drop-shadow-[2px_2px_0_rgba(0,0,0,1)] w-full text-center py-2">Bat-Paper</a>
                 <a href="#stats" @click="mobileMenu = false"
                     class="nav-link text-white hover:text-yellow-300 drop-shadow-[2px_2px_0_rgba(0,0,0,1)] w-full text-center py-2">Radar</a>
                 <a href="#tokenomics" @click="mobileMenu = false"
@@ -443,6 +447,163 @@
                     </div>
                     <div class="bg-black text-yellow-300 font-mono text-xs px-3 py-1 rounded border-2 border-black">
                         SECURE TRANSMISSION // EST. 2026
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3.6 Whitepaper / Bat-Paper Section -->
+    <section id="whitepaper" class="py-16 md:py-32 bg-slate-950 text-white relative border-b-8 border-black overflow-hidden">
+        <!-- Glow and Grid Background -->
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(240,208,64,0.03)_1px,_transparent_1px)]"
+            style="background-size: 24px 24px;"></div>
+        <div class="absolute bottom-1/4 left-1/4 w-96 h-96 bg-yellow-500/10 rounded-full blur-[120px] pointer-events-none mix-blend-screen animate-pulse"></div>
+
+        <div class="container mx-auto px-6 max-w-7xl relative z-10">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <p class="text-yellow-300 bangers text-3xl tracking-widest drop-shadow-md mb-2">CLASSIFIED DOSSIER</p>
+                <h2 class="text-5xl md:text-7xl mb-4 drop-shadow-[5px_5px_0_rgba(0,0,0,1)] text-white">THE BAT-PAPER</h2>
+                <div class="w-24 h-2 bg-yellow-400 mx-auto rounded-full mt-4"></div>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-12 items-stretch">
+                <!-- Left: Folder Graphic / Preview -->
+                <div class="lg:col-span-5 w-full flex flex-col justify-between" data-aos="fade-right">
+                    <div class="comic-card bg-yellow-100 text-black p-6 border-4 border-black relative h-full flex flex-col justify-between shadow-[8px_8px_0_rgba(0,0,0,1)]">
+                        <!-- Top Tabs of the Folder -->
+                        <div class="absolute -top-6 left-6 w-32 h-8 bg-yellow-400 border-t-4 border-x-4 border-black flex items-center justify-center font-black text-xs uppercase tracking-wider">
+                            SECURE FILE
+                        </div>
+                        <div class="absolute -top-6 left-36 w-24 h-8 bg-yellow-500/40 border-t-4 border-x-4 border-black opacity-60"></div>
+
+                        <!-- Folder Stamp Decoration -->
+                        <div class="absolute top-4 right-4 border-4 border-red-600 border-dashed rounded px-3 py-1 font-black text-red-600 uppercase tracking-widest text-sm rotate-12 select-none">
+                            CLASSIFIED
+                        </div>
+
+                        <!-- Inner Content Mock -->
+                        <div class="mt-4 flex-grow flex flex-col justify-center items-center text-center p-4">
+                            <span class="text-8xl mb-6 filter drop-shadow-[4px_4px_0_rgba(0,0,0,1)] select-none">📂</span>
+                            <h3 class="text-3xl bangers text-slate-900 tracking-wider mb-2">WHITEPAPER v1.0</h3>
+                            <p class="marker text-lg text-slate-700 max-w-sm mb-6 font-serif italic">
+                                Official documentation detailing the vision, brand ecosystem, token mechanics, and strategic plans for the $BATCAT network.
+                            </p>
+                            
+                            <!-- Small Technical Specs Table inside Folder -->
+                            <div class="w-full bg-white/70 border-2 border-black rounded-xl p-4 font-mono text-xs text-left space-y-2">
+                                <div><strong class="text-slate-900">FILE NAME:</strong> WHITEPAPER BATCAT.pdf</div>
+                                <div><strong class="text-slate-900">FILE SIZE:</strong> 3.97 MB</div>
+                                <div><strong class="text-slate-900">EDITION:</strong> 2026 OFFICIAL</div>
+                                <div><strong class="text-slate-900">ENCODING:</strong> SOLANA SECURE</div>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons inside the Folder Card -->
+                        <div class="mt-6 flex flex-col sm:flex-row gap-4 pt-6 border-t-2 border-black border-dashed">
+                            <a href="images/WHITEPAPER%20BATCAT.pdf" target="_blank" class="btn-main px-6 py-3 text-xl text-center flex-grow flex items-center justify-center gap-2">
+                                <span>📖</span> READ PDF
+                            </a>
+                            <a href="images/WHITEPAPER%20BATCAT.pdf" download="WHITEPAPER_BATCAT.pdf" class="btn-main px-6 py-3 text-xl text-center bg-black text-white hover:text-black flex-grow flex items-center justify-center gap-2">
+                                <span>💾</span> DOWNLOAD
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Interactive Document Preview -->
+                <div class="lg:col-span-7 w-full flex flex-col justify-between" data-aos="fade-left" x-data="{ activeTab: 'mission' }">
+                    <div class="comic-card bg-white text-black p-6 md:p-8 border-4 border-black h-full flex flex-col justify-between shadow-[8px_8px_0_rgba(0,0,0,1)]">
+                        <!-- Custom Tab Navigation -->
+                        <div class="flex flex-wrap gap-2 mb-6 border-b-4 border-black pb-4">
+                            <button @click="activeTab = 'mission'" :class="activeTab === 'mission' ? 'bg-yellow-400 text-black' : 'bg-slate-200 text-slate-700 hover:bg-slate-300'" class="px-4 py-2 border-2 border-black font-bold rounded-lg text-lg transition-colors tracking-wide uppercase">
+                                🚀 The Mission
+                            </button>
+                            <button @click="activeTab = 'brand'" :class="activeTab === 'brand' ? 'bg-yellow-400 text-black' : 'bg-slate-200 text-slate-700 hover:bg-slate-300'" class="px-4 py-2 border-2 border-black font-bold rounded-lg text-lg transition-colors tracking-wide uppercase">
+                                👑 Brand Ecosystem
+                            </button>
+                            <button @click="activeTab = 'plan'" :class="activeTab === 'plan' ? 'bg-yellow-400 text-black' : 'bg-slate-200 text-slate-700 hover:bg-slate-300'" class="px-4 py-2 border-2 border-black font-bold rounded-lg text-lg transition-colors tracking-wide uppercase">
+                                📅 Roadmap Plan
+                            </button>
+                        </div>
+
+                        <!-- Tab Content 1: Mission -->
+                        <div x-show="activeTab === 'mission'" x-transition.opacity.duration.300ms class="flex-grow flex flex-col justify-between space-y-4">
+                            <div>
+                                <h3 class="text-3xl text-yellow-600 mb-4 bangers">Chapter I: The Core Ambition</h3>
+                                <p class="text-lg leading-relaxed font-bold text-gray-800 mb-4 font-sans">
+                                    Every generation creates iconic brands. Very few create movements. BATCAT was never created to become another short-lived meme coin. It was created to build a recognizable global brand combining blockchain technology, community, creativity, and long-term execution.
+                                </p>
+                                <p class="text-lg leading-relaxed text-gray-700 font-sans">
+                                    <strong>Why Solana?</strong> We chose Solana because technology should never limit innovation. With high throughput (performance), global accessibility (extremely low transaction fees), and rapid developer innovation, Solana provides the rock-solid foundation needed to build an ecosystem that lasts.
+                                </p>
+                            </div>
+                            <div class="bg-yellow-50 p-4 border-2 border-black border-dashed rounded-xl mt-4">
+                                <p class="italic text-slate-800 text-lg leading-relaxed font-serif">
+                                    "Dear BATCAT Community, our objective is to create something capable of lasting far beyond a single market cycle... sustainable growth is achieved through discipline, execution, and collective strength." <br/>
+                                    <span class="block text-right font-black text-sm not-italic mt-2 font-sans">— Uncle Elon, Founder of $BATCAT</span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Tab Content 2: Brand -->
+                        <div x-show="activeTab === 'brand'" x-transition.opacity.duration.300ms class="flex-grow flex flex-col justify-between space-y-4" style="display:none;">
+                            <div>
+                                <h3 class="text-3xl text-blue-600 mb-4 bangers">Chapter II & III: Brand Expansion</h3>
+                                <p class="text-lg leading-relaxed font-bold text-gray-800 mb-4 font-sans">
+                                    The vision expands beyond digital assets. We are building a real-world footprint that connects digital innovation with physical products and legal infrastructure.
+                                </p>
+                                <ul class="space-y-3 text-lg text-gray-700 font-sans">
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-yellow-500 text-xl">📦</span>
+                                        <span><strong>Merchandise Strategy:</strong> High-quality collections including T-shirts, hoodies, caps, keychains, and stickers to unify the community.</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-yellow-500 text-xl">🏛️</span>
+                                        <span><strong>Corporate Foundation:</strong> Establishing an international corporate structure to manage licensing, commercial initiatives, and intellectual property.</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-yellow-500 text-xl">🐾</span>
+                                        <span><strong>Community & Welfare:</strong> Carefully selected real-world initiatives supporting animal welfare and local shelter engagement.</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="bg-blue-50 p-4 border-2 border-blue-900 border-dashed rounded-xl mt-4">
+                                <p class="font-bold text-blue-900 text-lg font-sans">
+                                    "Strong communities build strong brands. Strong brands create lasting legacies."
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Tab Content 3: Roadmap -->
+                        <div x-show="activeTab === 'plan'" x-transition.opacity.duration.300ms class="flex-grow flex flex-col justify-between space-y-4" style="display:none;">
+                            <div>
+                                <h3 class="text-3xl text-purple-600 mb-4 bangers">Chapter IV & V: Strategy & Evolution</h3>
+                                <p class="text-lg leading-relaxed font-bold text-gray-800 mb-4 font-sans">
+                                    Our roadmap represents our long-term direction, evolving in response to market conditions, technology improvements, and community input.
+                                </p>
+                                <div class="grid sm:grid-cols-3 gap-4 text-center mt-2">
+                                    <div class="p-3 border-2 border-black bg-slate-50 rounded-xl">
+                                        <h4 class="font-black text-sm text-slate-800 uppercase mb-1">PHASE 1</h4>
+                                        <p class="text-xs text-slate-600 leading-relaxed font-sans font-bold">Project Launch, Community Building & Global Social Media Presence.</p>
+                                    </div>
+                                    <div class="p-3 border-2 border-black bg-yellow-50 rounded-xl">
+                                        <h4 class="font-black text-sm text-yellow-600 uppercase mb-1">PHASE 2</h4>
+                                        <p class="text-xs text-slate-600 leading-relaxed font-sans font-bold">Strategic Partnerships, Merch Store Launch & Exchange Visibility.</p>
+                                    </div>
+                                    <div class="p-3 border-2 border-black bg-purple-50 rounded-xl">
+                                        <h4 class="font-black text-sm text-purple-600 uppercase mb-1">PHASE 3</h4>
+                                        <p class="text-xs text-slate-600 leading-relaxed font-sans font-bold">International Company Structure, Charities & Utility Integrations.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bg-purple-50 p-4 border-2 border-purple-900 border-dashed rounded-xl mt-4">
+                                <p class="font-bold text-purple-900 text-lg font-sans">
+                                    "The strongest ecosystems are not built by individuals. They are built by communities united behind a common vision."
+                                </p>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -1182,6 +1343,9 @@
                         class="text-2xl font-black mb-6 uppercase text-yellow-500 tracking-widest border-b-2 border-yellow-900 pb-2 inline-block">
                         LINKS</h4>
                     <ul class="space-y-4 font-bold text-xl">
+                        <li><a href="#whitepaper"
+                                class="hover:text-yellow-300 hover:translate-x-2 transition-transform inline-block">Bat-Paper
+                                →</a></li>
                         <li><a href="https://solscan.io/token/HCkhfdDNF2dqMxxtL51AzgWU26MBNkUkEzGAHtqkpump" target="_blank"
                                 class="hover:text-yellow-300 hover:translate-x-2 transition-transform inline-block">Solscan
                                 →</a></li>
